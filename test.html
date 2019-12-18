@@ -9,6 +9,10 @@
   <body>
     <script>
       (function() {
+        if (window.history.length > 1) {
+          return
+        }
+
         var ANDROID_APP_SCHEME =
           "intent://navigation?dlat=37.2933271563013&dlng=127.20132207547&did=11574457&dname=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C&appname=https%3A%2F%2Fm.place.naver.com%2Fnx%2Fattraction%2F11574457%2F#Intent;scheme=nmap;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.nhn.android.nmap;end";
         var ANDROID_APP_SCHEME_FALL_BACK =
