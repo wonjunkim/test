@@ -3,9 +3,9 @@
   <head>
     <title>웹뷰 테스트</title>
   </head>
-    <div>
-      테스트
-    </div>
+  <div>
+    테스트
+  </div>
   <body>
     <script>
       (function() {
@@ -43,18 +43,43 @@
           };
         }
 
-        alert(navigator.userAgent)
-        alert(get_browser())
-        alert(get_browser().name)
-        alert(get_browser().version)
+        alert(navigator.userAgent);
+        alert(get_browser());
+        alert(get_browser().name);
+        alert(get_browser().version);
 
-        setTimeout(() => {
-          try {
-            location.href = ANDROID_APP_SCHEME_FALL_BACK;
-          } catch (e) {
-            alert(e);
+        // setTimeout(() => {
+        //   try {
+        //     location.href = ANDROID_APP_SCHEME_FALL_BACK;
+        //   } catch (e) {
+        //     alert(e);
+        //   }
+        // }, 3000);
+
+        var SCHEME_FOR_TEST = "intent://open#Intent;scheme=;end";
+
+        //.... "S.browser_fallback_url"이 지원되는지 확인한다.
+        var iframe = document.createElement("IFRAME"),
+          self = this;
+
+        iframe.style.display = "none";
+        iframe.addEventListener("load", function onload() {
+          if (iframe.src === SCHEME_FOR_TEST) {
+            self.isNotSupportedFallbackURL = true;
+            alert('support')
+          } else {
+            alert('unsupport')
+            self.isPrepared = true;
+            iframe.removeEventListener("load", onload);
+            document.body.removeChild(iframe);
           }
-        }, 3000);
+        });
+        iframe.src = SCHEME_FOR_TEST;
+
+        document.body.appendChild(iframe);
+        setTimeout(function() {
+          iframe.src = "";
+        }, 100);
       })();
     </script>
   </body>
