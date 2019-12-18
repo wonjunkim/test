@@ -16,13 +16,13 @@
 
         alert(window.history.length)
 
-        // setTimeout(() => {
-        //   try {
-        //     location.href = ANDROID_APP_SCHEME_FALL_BACK;
-        //   } catch (e) {
-        //     alert(e);
-        //   }
-        // }, 3000);
+        setTimeout(() => {
+          try {
+            location.href = ANDROID_APP_SCHEME_FALL_BACK;
+          } catch (e) {
+            alert(e);
+          }
+        }, 3000);
       })();
     </script>
   </body>
