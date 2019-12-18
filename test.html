@@ -19,6 +19,7 @@
         setTimeout(() => {
           try {
             location.href = ANDROID_APP_SCHEME_FALL_BACK;
+            alert(window.history.length)
           } catch (e) {
             alert(e);
           }
