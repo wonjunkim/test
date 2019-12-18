@@ -14,39 +14,7 @@
         var ANDROID_APP_SCHEME_FALL_BACK =
           "intent://navigation?dlat=37.2933271563013&dlng=127.20132207547&did=11574457&dname=%EC%97%90%EB%B2%84%EB%9E%9C%EB%93%9C&appname=https%3A%2F%2Fm.place.naver.com%2Fnx%2Fattraction%2F11574457%2F#Intent;scheme=nmap;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.nhn.android.nmap;S.browser_fallback_url=http%3A%2F%2Fm.naver.com;end";
 
-        function get_browser() {
-          var ua = navigator.userAgent,
-            tem,
-            M =
-              ua.match(
-                /(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i
-              ) || [];
-          if (/trident/i.test(M[1])) {
-            tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
-            return { name: "IE", version: tem[1] || "" };
-          }
-          if (M[1] === "Chrome") {
-            tem = ua.match(/\bOPR|Edge\/(\d+)/);
-            if (tem != null) {
-              return { name: "Opera", version: tem[1] };
-            }
-          }
-          M = M[2]
-            ? [M[1], M[2]]
-            : [navigator.appName, navigator.appVersion, "-?"];
-          if ((tem = ua.match(/version\/(\d+)/i)) != null) {
-            M.splice(1, 1, tem[1]);
-          }
-          return {
-            name: M[0],
-            version: M[1]
-          };
-        }
-
-        alert(navigator.userAgent);
-        alert(get_browser());
-        alert(get_browser().name);
-        alert(get_browser().version);
+        alert(window.history.length)
 
         // setTimeout(() => {
         //   try {
@@ -55,31 +23,6 @@
         //     alert(e);
         //   }
         // }, 3000);
-
-        var SCHEME_FOR_TEST = "intent://open#Intent;scheme=;end";
-
-        //.... "S.browser_fallback_url"이 지원되는지 확인한다.
-        var iframe = document.createElement("IFRAME"),
-          self = this;
-
-        iframe.style.display = "none";
-        iframe.addEventListener("load", function onload() {
-          if (iframe.src === SCHEME_FOR_TEST) {
-            self.isNotSupportedFallbackURL = true;
-            alert('support')
-          } else {
-            alert('unsupport')
-            self.isPrepared = true;
-            iframe.removeEventListener("load", onload);
-            document.body.removeChild(iframe);
-          }
-        });
-        iframe.src = SCHEME_FOR_TEST;
-
-        document.body.appendChild(iframe);
-        setTimeout(function() {
-          iframe.src = "";
-        }, 100);
       })();
     </script>
   </body>
